@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive, beginner-friendly visual guide to serving a streaming-style website with NGINX on AWS EC2.">
+  <meta name="theme-color" content="#101010">
+  <title>Nginx Server visual | #Buildwithvinit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Nginx Server visual home">
+      <span class="brand-mark">N</span><span>NGINX <b>SERVER VISUAL</b></span>
+    </a>
+    <div class="top-actions">
+      <span class="brand-tag">#Buildwithvinit</span>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="Switch color theme" title="Switch theme">☼ <span>Theme</span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">AWS CLOUD • WEB SERVING • VISUAL LAB</p>
+        <h1>From browser request<br><span>to a page on screen.</span></h1>
+        <p class="intro-copy">Follow a visitor's request through AWS networking, an EC2 security group and NGINX—then see how static website files become a working page.</p>
+      </div>
+      <div class="intro-badge"><span class="pulse-dot"></span><span><b>Interactive learning lab</b><small>9 steps · 5-second autoplay</small></span></div>
+    </section>
+
+    <section class="lab-layout" aria-label="Interactive NGINX learning lab">
+      <aside class="step-panel">
+        <div class="panel-heading"><div><p class="eyebrow">THE JOURNEY</p><h2>Request lifecycle</h2></div><span id="stepCounter" class="counter">01 / 09</span></div>
+        <nav id="stepNav" class="step-nav" aria-label="Choose a learning step">
+          <button class="step-button active" data-step="0"><span class="step-number">01</span><span><b>AWS EC2</b><small>Launch the server</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="1"><span class="step-number">02</span><span><b>Security Group</b><small>Check traffic rules</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="2"><span class="step-number">03</span><span><b>Connect to EC2</b><small>Open a terminal</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="3"><span class="step-number">04</span><span><b>Install NGINX</b><small>Install the web server</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="4"><span class="step-number">05</span><span><b>Start NGINX</b><small>Run and verify service</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="5"><span class="step-number">06</span><span><b>Website Files</b><small>HTML, CSS, JS and images</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="6"><span class="step-number">07</span><span><b>Browser Request</b><small>Send HTTP on port 80</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="7"><span class="step-number">08</span><span><b>NGINX Response</b><small>Return page assets</small></span><span class="step-check">●</span></button>
+          <button class="step-button" data-step="8"><span class="step-number">09</span><span><b>Troubleshooting</b><small>Check common failures</small></span><span class="step-check">●</span></button>
+        </nav>
+        <div class="playback">
+          <button id="playPause" class="primary-button" type="button">Ⅱ Pause</button>
+          <button id="resetButton" class="secondary-button" type="button">↺ Reset</button>
+        </div>
+        <p class="autoplay-note"><span class="pulse-dot"></span> Autoplay advances every 5 seconds</p>
+      </aside>
+
+      <div class="main-lab">
+        <section class="diagram-card">
+          <div class="section-topline"><div><p class="eyebrow">LIVE INFRASTRUCTURE MAP</p><h2>Follow the request</h2></div><span class="status-pill"><i></i><span id="diagramStatus">EC2 selected</span></span></div>
+          <div class="diagram-wrap">
+            <svg id="infraDiagram" viewBox="0 0 900 470" role="img" aria-labelledby="diagramTitle diagramDesc">
+              <title id="diagramTitle">Animated path from browser to NGINX on AWS EC2</title>
+              <desc id="diagramDesc">Browser sends a request through the internet, AWS network and security group to NGINX, which reads website files and returns a response.</desc>
+              <defs>
+                <linearGradient id="awsFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#182438"/><stop offset="1" stop-color="#101721"/></linearGradient>
+                <linearGradient id="nodeGlow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e50914" stop-opacity=".22"/><stop offset="1" stop-color="#e50914" stop-opacity=".04"/></linearGradient>
+                <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ff3540"/></marker>
+                <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4dd4a5"/></marker>
+              </defs>
+              <rect x="8" y="8" width="884" height="454" rx="20" class="diagram-bg"/>
+              <g class="zone" id="zoneAws"><rect x="350" y="36" width="520" height="390" rx="18"/><text x="370" y="62" class="zone-label">AWS CLOUD</text></g>
+              <g class="zone" id="zoneVpc"><rect x="375" y="84" width="470" height="315" rx="16"/><text x="395" y="109" class="zone-label">VPC / PUBLIC SUBNET</text></g>
+
+              <path class="route route-request" d="M160 224 H245 Q260 224 260 208 V170 Q260 150 280 150 H380" marker-end="url(#arrowRed)"/>
+              <path class="route route-request" d="M480 150 H535" marker-end="url(#arrowRed)"/>
+              <path class="route route-request" d="M635 150 H685" marker-end="url(#arrowRed)"/>
+              <path class="route route-files" d="M735 210 V266" marker-end="url(#arrowGreen)"/>
+              <path class="route route-response" d="M685 310 H650 Q635 310 635 290 V252 Q635 232 615 232 H475 Q455 232 455 252 V290 Q455 310 435 310 H180 Q160 310 160 290 V260" marker-end="url(#arrowGreen)"/>
+
+              <g class="node" id="nodeBrowser" transform="translate(40 185)">
+                <rect width="120" height="90" rx="12"/><rect x="12" y="12" width="96" height="52" rx="5" class="browser-screen"/><path d="M12 23H108" class="node-line"/><circle cx="21" cy="18" r="2" class="red-dot"/><circle cx="29" cy="18" r="2" class="yellow-dot"/><circle cx="37" cy="18" r="2" class="green-dot"/><path d="M48 74H72 M60 64V74" class="node-line"/><text x="60" y="106" text-anchor="middle" class="node-title">Browser</text><text x="60" y="121" text-anchor="middle" class="node-sub">Visitor</text>
+              </g>
+              <g class="node" id="nodeInternet" transform="translate(280 112)">
+                <rect width="100" height="76" rx="12"/><circle cx="50" cy="30" r="17" class="globe"/><path d="M33 30H67 M50 13C41 22 41 38 50 47 M50 13C59 22 59 38 50 47 M36 21H64 M36 39H64" class="globe-lines"/><text x="50" y="96" text-anchor="middle" class="node-title">Internet</text><text x="50" y="111" text-anchor="middle" class="node-sub">HTTP / TCP</text>
+              </g>
+              <g class="node" id="nodeSg" transform="translate(430 112)">
+                <rect width="100" height="76" rx="12"/><path d="M50 12L69 20V35Q69 50 50 60Q31 50 31 35V20Z" class="shield"/><path d="M41 35L47 41L59 28" class="shield-check"/><text x="50" y="96" text-anchor="middle" class="node-title">Security Group</text><text x="50" y="111" text-anchor="middle" class="node-sub">Port 80 allowed?</text>
+              </g>
+              <g class="node" id="nodeEc2" transform="translate(555 112)">
+                <rect width="80" height="76" rx="12"/><rect x="20" y="14" width="40" height="44" rx="4" class="server-body"/><path d="M26 24H54 M26 34H54 M26 44H54" class="server-lines"/><circle cx="50" cy="52" r="2" class="server-led"/><text x="40" y="96" text-anchor="middle" class="node-title">EC2</text><text x="40" y="111" text-anchor="middle" class="node-sub">Linux host</text>
+              </g>
+              <g class="node" id="nodeNginx" transform="translate(685 112)">
+                <rect width="100" height="98" rx="12"/><circle cx="50" cy="34" r="23" class="nginx-circle"/><text x="50" y="42" text-anchor="middle" class="nginx-n">N</text><text x="50" y="119" text-anchor="middle" class="node-title">NGINX</text><text x="50" y="134" text-anchor="middle" class="node-sub">Web server</text>
+              </g>
+              <g class="node" id="nodeFiles" transform="translate(685 266)">
+                <rect width="100" height="76" rx="12"/><path d="M30 17H53L66 30V59H30Z" class="file-shape"/><path d="M53 17V30H66 M38 39H58 M38 46H58 M38 53H53" class="file-lines"/><text x="50" y="96" text-anchor="middle" class="node-title">Website files</text><text x="50" y="111" text-anchor="middle" class="node-sub">HTML · CSS · JS</text>
+              </g>
+              <g class="packet packet-request" id="packetRequest"><circle r="7"/><text x="12" y="-12">HTTP GET</text></g>
+              <g class="packet packet-response" id="packetResponse"><circle r="7"/><text x="12" y="-12">200 OK</text></g>
+              <g class="packet packet-file" id="packetFile"><circle r="6"/><text x="12" y="-12">index.html</text></g>
+              <g class="diagram-legend"><circle cx="40" cy="412" r="5" fill="#ff3540"/><text x="52" y="416">Request</text><circle cx="142" cy="412" r="5" fill="#4dd4a5"/><text x="154" y="416">Response / files</text><text x="40" y="440" class="legend-small">Illustrative flow — not a live AWS connection</text></g>
+            </svg>
+          </div>
+          <div class="diagram-footer"><span><i class="legend-dot request-dot"></i> HTTP request</span><span><i class="legend-dot response-dot"></i> Server response</span><span id="flowLabel">Step 1: provision the host</span></div>
+        </section>
+
+        <section class="caption-card" aria-live="polite">
+          <div class="caption-number" id="captionNumber">01</div>
+          <div class="caption-content"><p class="eyebrow" id="captionEyebrow">FOUNDATION</p><h2 id="captionTitle">Launch an EC2 instance</h2><p id="captionSimple">Think of EC2 as renting a computer in AWS. It will run Linux and host the website.</p><p class="technical" id="captionTechnical">Technical: choose Amazon Linux 2023, a suitable instance size, a key pair and a subnet. A public IPv4 address is needed for direct public access.</p><div class="command-row"><code id="captionCommand">AWS Console → EC2 → Launch instance</code><button id="copyCommand" type="button" class="copy-button">Copy</button></div></div>
+        </section>
+
+        <section class="preview-section">
+          <div class="section-topline"><div><p class="eyebrow">BROWSER OUTPUT</p><h2>Streaming-style homepage preview</h2></div><span class="demo-label">DEMO CONTENT</span></div>
+          <div class="stream-preview" id="streamPreview">
+            <div class="stream-nav"><a class="stream-logo" href="#streamPreview" aria-label="StreamFlix demo home">STREAM<span>FLIX</span></a><nav><a href="#shows">Home</a><a href="#shows">Series</a><a href="#shows">Films</a><a href="#shows">My List</a></nav><div class="profile"><span class="search-glyph">⌕</span><span class="profile-avatar">V</span></div></div>
+            <div class="hero-banner">
+              <img class="hero-image" src="https://images.unsplash.com/photo-1440404653325-ab127d49c245?auto=format&fit=crop&w=1600&q=85" alt="Cinematic movie theatre seats" loading="lazy">
+              <div class="hero-shade"></div><div class="hero-content"><p class="hero-kicker"><span class="mini-n">N</span> STREAMFLIX ORIGINAL</p><h3>THE LAST<br>HORIZON</h3><p class="hero-meta"><span class="match">98% Match</span> 2026 <span class="rating">16+</span> 2 Seasons</p><p class="hero-description">At the edge of a changing world, one crew follows a signal that could rewrite everything they know.</p><div class="hero-buttons"><button type="button" id="previewPlay" class="watch-button">▶ Play</button><button type="button" id="moreInfo" class="info-button">ⓘ More Info</button></div></div>
+            </div>
+            <div class="show-rows" id="shows">
+              <div class="show-row-heading"><h4>Trending now</h4><span>Explore the collection ›</span></div>
+              <div class="poster-grid">
+                <button class="poster-card" data-title="Midnight Run" data-desc="A night-shift driver finds a mysterious passenger and a city full of secrets."><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=500&q=80" alt="Night sky over a city" loading="lazy"><span class="poster-rank">01</span><span class="poster-title">MIDNIGHT RUN</span></button>
+                <button class="poster-card" data-title="Wild Frontier" data-desc="A remote expedition must work together to survive an unforgiving wilderness."><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=500&q=80" alt="Wildlife in a forest" loading="lazy"><span class="poster-rank">02</span><span class="poster-title">WILD FRONTIER</span></button>
+                <button class="poster-card" data-title="Blue Depth" data-desc="An ocean scientist discovers a beautiful mystery beneath the waves."><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=500&q=80" alt="Deep blue ocean waves" loading="lazy"><span class="poster-rank">03</span><span class="poster-title">BLUE DEPTH</span></button>
+                <button class="poster-card" data-title="The Summit" data-desc="Two climbers race the weather and their own doubts toward the top."><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80" alt="Mountain peaks" loading="lazy"><span class="poster-rank">04</span><span class="poster-title">THE SUMMIT</span></button>
+                <button class="poster-card" data-title="Neon District" data-desc="A rookie detective traces a digital trail through a city that never sleeps."><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=500&q=80" alt="Night lights" loading="lazy"><span class="poster-rank">05</span><span class="poster-title">NEON DISTRICT</span></button>
+              </div>
+            </div>
+            <div class="preview-footnote">Fictional streaming interface for education. Not affiliated with Netflix.</div>
+          </div>
+          <div id="previewMessage" class="preview-message" role="status" hidden></div>
+        </section>
+
+        <section class="terminal-card">
+          <div class="terminal-head"><span class="terminal-lights"><i></i><i></i><i></i></span><b>EC2 TERMINAL — DEMONSTRATION</b><span class="terminal-readonly">READ-ONLY SIMULATION</span></div>
+          <div class="terminal-body" id="terminalBody"><p><span class="prompt">$</span> sudo systemctl status nginx</p><p class="terminal-success">● nginx.service - The nginx HTTP and reverse proxy server</p><p>   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled)</p><p>   Active: <span class="terminal-success">active (running)</span></p><p><span class="prompt">$</span> curl -I http://localhost</p><p class="terminal-success">HTTP/1.1 200 OK</p><p>Server: nginx</p><p>Content-Type: text/html</p></div>
+          <p class="terminal-note">This terminal is a visual example only; it does not connect to or change your AWS account.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="interview-strip">
+      <div><p class="eyebrow">INTERVIEW READY</p><h2>Explain it in 30 seconds</h2><p>A browser sends an HTTP request to the EC2 public IP on port 80. The security group permits the traffic, and NGINX listens on the instance, finds the requested static files and returns an HTTP response. The browser then renders HTML, applies CSS, runs JavaScript and loads images.</p></div>
+      <button id="copyInterview" class="secondary-button" type="button">Copy interview answer</button>
+    </section>
+    <footer class="footer"><span>Built for cloud learning <b>#Buildwithvinit</b></span><span>Independent educational demo · No real AWS calls</span><a href="README.md">Project guide</a></footer>
+  </main>
+
+  <dialog id="infoDialog" class="info-dialog"><button class="dialog-close" id="closeDialog" aria-label="Close dialog">×</button><p class="eyebrow">DEMO TITLE</p><h2 id="dialogTitle">The Last Horizon</h2><p id="dialogText">A fictional title created for this educational preview.</p><p class="dialog-disclaimer">This is a mock streaming interface, not a real streaming service.</p><button id="dialogOk" class="primary-button" type="button">Got it</button></dialog>
+  <script src="js/app.js"></script>
+</body>
+</html>
